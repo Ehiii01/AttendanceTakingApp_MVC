@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/AttendanceApp_MVC/.vs/AttendanceApp_MVC
+/AttendanceApp_MVC/AttendanceApp_MVC/bin/Debug/net8.0
+/AttendanceApp_MVC/Attendance.Models/obj
+/AttendanceApp_MVC/AttendanceApp_MVC/obj
+/AttendanceApp_MVC/.vs/AttendanceBookApp_MVC/v17

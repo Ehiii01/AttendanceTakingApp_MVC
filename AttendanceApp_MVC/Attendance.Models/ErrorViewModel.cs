@@ -1,4 +1,4 @@
-namespace AttendanceApp_MVC.Models
+namespace AttendanceBook.Models
 {
     public class ErrorViewModel
     {

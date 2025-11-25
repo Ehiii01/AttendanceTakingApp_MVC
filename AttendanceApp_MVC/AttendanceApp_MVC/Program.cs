@@ -1,4 +1,8 @@
-namespace AttendanceApp_MVC
+using AttendanceBook.DataAccess.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+
+namespace AttendanceBookWeb
 {
     public class Program
     {
@@ -8,7 +12,8 @@ namespace AttendanceApp_MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddDbContext<AttendanceBookAppDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

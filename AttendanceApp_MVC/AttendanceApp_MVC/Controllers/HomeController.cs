@@ -1,8 +1,8 @@
 using System.Diagnostics;
-using AttendanceApp_MVC.Models;
+using AttendanceBook.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AttendanceApp_MVC.Controllers
+namespace AttendanceBookWeb.Controllers
 {
     public class HomeController : Controller
     {

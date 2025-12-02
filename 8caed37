@@ -1,0 +1,15 @@
+[33mc8e9718[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{0}: commit: one change(A gitignore File)
+[33mf6962c4[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{1}: commit: 1 change(Another gitignore File)
+[33m025690b[m HEAD@{2}: commit: 1 change(gitignore File)
+[33m8caed37[m[33m ([m[1;32mAttendance_MVC-Local[m[33m)[m HEAD@{3}: checkout: moving from Attendance_MVC-Local to main
+[33m8caed37[m[33m ([m[1;32mAttendance_MVC-Local[m[33m)[m HEAD@{4}: checkout: moving from main to Attendance_MVC-Local
+[33m8caed37[m[33m ([m[1;32mAttendance_MVC-Local[m[33m)[m HEAD@{5}: reset: moving to HEAD
+[33m8caed37[m[33m ([m[1;32mAttendance_MVC-Local[m[33m)[m HEAD@{6}: reset: moving to HEAD
+[33m8caed37[m[33m ([m[1;32mAttendance_MVC-Local[m[33m)[m HEAD@{7}: reset: moving to HEAD
+[33m8caed37[m[33m ([m[1;32mAttendance_MVC-Local[m[33m)[m HEAD@{8}: checkout: moving from Attendance_MVC-Local to main
+[33m8caed37[m[33m ([m[1;32mAttendance_MVC-Local[m[33m)[m HEAD@{9}: reset: moving to HEAD
+[33m8caed37[m[33m ([m[1;32mAttendance_MVC-Local[m[33m)[m HEAD@{10}: checkout: moving from main to Attendance_MVC-Local
+[33m8caed37[m[33m ([m[1;32mAttendance_MVC-Local[m[33m)[m HEAD@{11}: reset: moving to HEAD
+[33m8caed37[m[33m ([m[1;32mAttendance_MVC-Local[m[33m)[m HEAD@{12}: commit: Added 42 changes
+[33m47b6204[m HEAD@{13}: commit: Added 95 changes(File templates And 2 Class Library)
+[33mcb8c5f7[m HEAD@{14}: clone: from https://github.com/Ehiii01/AttendanceTakingApp_MVC.git

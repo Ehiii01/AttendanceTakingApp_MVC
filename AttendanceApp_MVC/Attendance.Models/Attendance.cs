@@ -6,10 +6,12 @@ namespace AttendanceBook.Models
         public int Id { get; set; }
         public string FullName { get; set; }
         public int Age { get; set; }
-        public DateTime CheckInTime { get; set; }
-        public DateTime CheckOutTime { get; set; }
+        public DateTime CheckIn { get; set; }
+        public DateTime? CheckOut { get; set; }
+        public bool IsCheckOut{ get; set; } 
         public string  AttendanceReason{ get; set; }
+        public string ImageUrl { get; set; }
 
-       
+
     }
 }

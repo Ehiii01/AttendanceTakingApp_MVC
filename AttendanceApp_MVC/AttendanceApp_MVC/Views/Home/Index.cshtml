@@ -1,8 +1,382 @@
-﻿@{
+﻿@model AttendanceBookWeb.ViewModels.AttendanceStatisticsResponse
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<style>
+    .card-details {
+        font-family:"Montserrat";
+   height: 120px;
+    }
+    .card-row{
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        gap: 20px;
+    }
+    .actions{
+        display: flex;
+        justify-content: space-between;
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+
+    .attendance-info{
+        display: flex;
+        justify-content: left;
+        gap: 300px;
+        font-family: Montserrat;
+    }
+</style>
+
+
+<div class="row card-row">
+    <div class="col-3 text-center text-bg-dark card card-details"> <p style="padding-top: 10px">Total Daily Attendance</p><h1>@Model.TotalDailyAttendance</h1></div>
+    <div class="col-3 text-center text-bg-success card card-details"> <p style="padding-top: 10px">Total Currently Checked In Users</p><h1>@Model.TotalCurrentlyCheckedInUsers</h1></div>
+    <div class="col-3 text-center text-bg-light card card-details"> <p style="padding-top: 10px">Total Currently Checked Out Users</p><h1>@Model.TotalCurrentlyCheckedOutUsers</h1></div>
+    @* <div class="col-3 text-center text-bg-light card card-details"> <p style="padding-top: 10px">Total Currently Checked Out Users</p><h1>@Model.TotalCurrentlyCheckedOutUsers</h1></div> *@
+</div>
+
+<div class="actions">
+    <button type="button"
+            class="btn btn-info"
+            onclick="location.href='@Url.Action("Index", "Attendances")'">
+       View All Records
+    </button>
+
+
+    <button type="button"
+            class="btn btn-success"
+            onclick="location.href='@Url.Action("Create", "Attendances")'">
+        Check In
+    </button>
+</div>
+
+
+
+<div class="row card-row">
+    <div class="card col-5">
+
+        
+
+        <h4 style="font-family:'Montserrat'; padding-top:10px">Recently Checked In Users</h4> 
+
+
+
+
+
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                       Full Name
+                    </th>
+                    <th>
+                        Age
+                    </th>
+                    <th>
+                       Check In
+                    </th>
+                    
+                     
+                   
+                    <th></th>
+                </tr>   
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Top5RecentlyCheckedInUsers)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Age)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckIn)
+                        </td>
+                       
+                        <td>
+                            @if (!item.IsCheckOut)
+                            {
+
+                                <span> <a asp-action="CheckOut" asp-route-attendanceId="@item.Id">Check Out</a> |</span>
+
+
+                            }
+                            <a asp-controller="Attendances" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                           
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="card col-5">
+
+
+
+        <h4 style="font-family:'Montserrat'; padding-top: 10px">Recently Checked Out Users</h4>
+
+
+
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        Age
+                    </th>
+                    <th>
+                        Check In
+                    </th>
+
+
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.TotalAttendanceForCurrentYear)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Age)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckIn)
+                        </td>
+
+                        <td>
+                           
+                            <a asp-controller="Attendances" asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+<div class="row card-row">
+
+
+
+    <div class="card col-5">
+
+        
+
+        <h4 style="font-family:'Montserrat'; padding-top:10px">Attendance Statistics</h4> 
+        <div style="display: flex; justify-content: left;gap: 400px;">
+            <p>Total Attendance: </p>
+            <p>
+                @Model.Statistics.TotalAttendance
+            </p>
+        </div>
+        <hr />
+        <div class="attendance-info">
+            <p>Total Attendance For Current Month: </p>
+            <p>@Model.Statistics.TotalAttendanceForCurrentMonth</p>
+        </div>
+        
+        <hr />
+        
+
+        <div class="attendance-info">
+            <p>Total Attendance For Current Year: </p>
+            <p>@Model.Statistics.TotalAttendanceForCurrentYear</p>
+        </div>
+       
+        <hr />
+
+        <div class="attendance-info">
+            
+            <p>Total Attendance With Issues: </p>
+            <p >@Model.Statistics.AttendanceWithIssues</p>           
+        </div>
+        <div>
+            @if (Model.AttendanceWithIssues == null)
+            {
+                <a asp-controller="home" asp-action="Index" asp-route-getAttedanceWithIssues="true">View Details</a>
+
+            }
+            else
+            {
+                <a asp-controller="home" asp-action="Index">Go Back </a>
+
+            }
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="col-5">
+
+
+
+
+        @if(Model.AttendanceWithIssues != null)
+        {
+            <div class="card ">
+
+            <h4 style="font-family:'Montserrat'; padding-top: 10px">Attendances With Issues</h4>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Full Name
+                        </th>
+                        <th>
+                            Age
+                        </th>
+                        <th>
+                            Check In
+                        </th>
+
+
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.AttendanceWithIssues)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Age)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CheckIn)
+                            </td>
+
+                            <td>
+
+                                <a asp-controller="Attendances" asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+            </div>
+        }
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+</div> *@

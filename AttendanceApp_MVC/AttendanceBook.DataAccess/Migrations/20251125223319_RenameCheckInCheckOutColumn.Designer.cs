@@ -4,6 +4,7 @@ using AttendanceBook.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AttendanceBook.DataAccess.Migrations
 {
     [DbContext(typeof(AttendanceBookAppDbContext))]
-    partial class AttendanceBookAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251125223319_RenameCheckInCheckOutColumn")]
+    partial class RenameCheckInCheckOutColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,15 +43,12 @@ namespace AttendanceBook.DataAccess.Migrations
                     b.Property<DateTime>("CheckIn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("CheckOut")
+                    b.Property<DateTime>("CheckOut")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsCheckOut")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

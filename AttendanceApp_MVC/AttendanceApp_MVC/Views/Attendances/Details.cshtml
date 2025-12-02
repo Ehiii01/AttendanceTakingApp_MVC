@@ -4,43 +4,95 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<style>
+    .details-info{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin:20px;
+        flex-direction:column;
+        font-family: "Montserrat";
+    }
+
+    .card-details{
+        margin: 20px;
+        /* min-height: 250px; */
+        border: 1px solid beige;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .details-name{
+        display: flex;
+        justify-content: center;
+
+    }
+    .check-info{
+        margin: 20px;
+    }
+
+    .checkout-btn{
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    
+    .blue-bold-font{
+        color: #202068;
+        font-weight: bold;
+    }
+
+
+</style>
 
 <div>
-    <h4>Attendance</h4>
+    <h4>Attendance Details</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CheckInTime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CheckInTime)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CheckOutTime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CheckOutTime)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AttendanceReason)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AttendanceReason)
-        </dd>
-    </dl>
+    <div class="details-info">
+
+
+        <div class="details-name">
+            <h6 class="blue-bold-font">@Model.FullName</h6>
+        </div>
+        <div class="row col-10 card-details">
+
+
+            <div class="col-sm-5 check-info">
+                <p> <strong>Age : </strong> <span class="blue-bold-font">@Model.Age</span></p>
+            </div>
+
+            <div class="col-sm-5 check-info">
+                <p><strong>Attendance Reason : </strong><span class="blue-bold-font">@Model.AttendanceReason</span></p>
+            </div>
+
+             <div class="col-sm-5">
+                <p> <strong>Check In : </strong><span class="blue-bold-font">@Model.CheckIn.ToString("dddd, MMMM dd, yyyy HH:mm:ss")</span></p>
+                </div>
+           
+                <div class="col-sm-5">
+                <p><strong>CheckOut : </strong><span class="blue-bold-font">@(Model.CheckOut.HasValue? Model.CheckOut.Value.ToString("dddd, MMMM dd, yyyy HH:mm:ss"): "N/A")</span></p>
+               </div>
+
+  
+            @if(Model.IsCheckOut == false)
+            {
+                <div class="checkout-btn">
+                    <button type="button"
+                            class="btn btn-dark "
+                            onclick="location.href='@Url.Action("CheckOut", "Attendances", new { attendanceId = Model.Id})'">
+                        Check Out
+                    </button>
+                </div>
+
+            }
+           
+
+        </div>
+    </div>
+   
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |

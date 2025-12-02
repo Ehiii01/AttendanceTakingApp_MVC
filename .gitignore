@@ -10,3 +10,5 @@
 /AttendanceApp_MVC/AttendanceBook.DataAccess/bin/Debug/net8.0
 /AttendanceApp_MVC/Attendance.Models/bin/Debug/net8.0
 /AttendanceApp_MVC/AttendanceBook.Repository/obj
+/AttendanceApp_MVC/AttendanceBook.DataAccess/obj/Debug/net8.0
+/AttendanceApp_MVC/.vs

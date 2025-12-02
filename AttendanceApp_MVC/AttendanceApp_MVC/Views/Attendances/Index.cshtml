@@ -4,11 +4,31 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
+<h4 style="justify-content: center; display: flex;"> 
+    Attendance Records
+</h4>
+<hr />
+<p style="margin-left:10px; margin-bottom:5px;" >
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-controller="Attendances" asp-action="Index" method="get">
+    <div class="col-6" style="align-content: baseline;gap:10px; display: flex; padding: 10px">
+        <input type="text" name="fullName" class="form-control" />
+        <input class="btn btn-dark " type="submit" value="Search" />
+
+        <div >
+            @* <button type="button"
+                class="btn btn-dark "
+                onclick="location.href='@Url.Action("Search", "Attendances")'">
+            Search
+        </button> *@
+        </div>
+    </div>
+   
+</form>
+
+
+
 <table class="table">
     <thead>
         <tr>
@@ -19,10 +39,10 @@
                 @Html.DisplayNameFor(model => model.Age)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CheckInTime)
+                @Html.DisplayNameFor(model => model.CheckIn)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CheckOutTime)
+                @Html.DisplayNameFor(model => model.CheckOut)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.AttendanceReason)
@@ -40,18 +60,26 @@
                 @Html.DisplayFor(modelItem => item.Age)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CheckInTime)
+                @Html.DisplayFor(modelItem => item.CheckIn)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CheckOutTime)
+                @Html.DisplayFor(modelItem => item.CheckOut)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AttendanceReason)
             </td>
             <td>
+                @if (!item.IsCheckOut)
+                    {
+
+                        <span> <a asp-action="CheckOut" asp-route-attendanceId="@item.Id">Check Out</a> |  </span>
+                              
+    
+                }
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            
             </td>
         </tr>
 }

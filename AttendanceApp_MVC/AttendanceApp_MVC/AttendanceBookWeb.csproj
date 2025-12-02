@@ -23,4 +23,8 @@
     <ProjectReference Include="..\AttendanceBook.DataAccess\AttendanceBook.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\ImageCapture\" />
+  </ItemGroup>
+
 </Project>
